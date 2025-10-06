@@ -55,9 +55,15 @@ npm run dev
 
 ### Environment Variables
 Located in `.dev.vars` (not committed to git):
-- `GOOGLE_AI_STUDIO_API_KEY`: Google Gemini API key (optional for frontend-only)
-- `JWT_SECRET`: Secure random string for session management
-- `WEBHOOK_SECRET`: Webhook authentication secret
+- `GOOGLE_AI_STUDIO_API_KEY`: Google Gemini API key (optional for frontend-only, currently empty)
+- `JWT_SECRET`: Secure random string for session management (auto-generated for dev)
+- `WEBHOOK_SECRET`: Webhook authentication secret (auto-generated for dev)
+
+**Security Note:** For production or when using real API keys, move sensitive credentials to Replit Secrets:
+1. Go to the Secrets tab in Replit
+2. Add each secret key/value pair
+3. Remove from .dev.vars file
+4. Secrets will be automatically available as environment variables
 
 ## File Structure
 ```
