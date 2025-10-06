@@ -1,0 +1,47 @@
+ Post-Deployment: OAuth Setup (Optional)
+OAuth configuration is not shown on the initial deploy page. If you want user login features, you'll need to set this up after deployment:
+
+How to Add OAuth After Deployment:
+
+Find your repository in your GitHub/GitLab account (created by "Deploy to Cloudflare" flow)
+Clone locally and run bun install
+Create .dev.vars and .prod.vars files (see below for OAuth configuration)
+Run bun run deploy to update your deployment
+Google OAuth Setup:
+
+Google Cloud Console → Create Project
+Enable Google+ API
+Create OAuth 2.0 Client ID
+Add authorized origins: https://your-custom-domain.
+Add redirect URI: https://your-worker-name.workers.dev/api/auth/callback/google
+Add to both .dev.vars (for local development) and .prod.vars (for deployment):
+GOOGLE_CLIENT_ID="your-google-client-id"
+GOOGLE_CLIENT_SECRET="your-google-client-secret"
+GitHub OAuth Setup:
+
+GitHub → Settings → Developer settings → OAuth Apps
+Click New OAuth App
+Application name: Cloudflare VibeSDK
+Homepage URL: https://your-worker-name.workers.dev
+Authorization callback URL: https://your-worker-name.workers.dev/api/auth/callback/github
+Add to both .dev.vars (for local development) and .prod.vars (for deployment):
+GITHUB_CLIENT_ID="your-github-client-id"
+GITHUB_CLIENT_SECRET="your-github-client-secret"
+GitHub Export OAuth Setup:
+
+Create a separate GitHub OAuth app (e.g., VibeSDK Export)—do not reuse the login app above.
+Authorization callback URL: https://your-worker-name.workers.dev/api/github-exporter/callback (or your custom domain equivalent).
+Add to both .dev.vars and .prod.vars:
+GITHUB_EXPORTER_CLIENT_ID="your-export-client-id"
+GITHUB_EXPORTER_CLIENT_SECRET="your-export-client-secret"
+Redeploy or restart local development so the new variables take effect.
+🎨 How It Works
+
+How It Works
+🧠 AI Analysis: Language models process your description
+📋 Blueprint Creation: System architecture and file structure planned
+⚡ Phase Generation: Code generated incrementally with dependency management
+🔍 Quality Assurance: Automated linting, type checking, and error correction
+📱 Live Preview: App execution in isolated Cloudflare Containers
+🔄 Real-time Iteration: Chat interface enables continuous refinements
+🚀 One-Click Deploy: Generated apps deploy to Workers for Platforms
